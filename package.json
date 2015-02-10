@@ -1,6 +1,6 @@
 {
   "name": "gulp-bower-main",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Get bower main files in both normal and in minimized formats (if available in package)",
   "main": "index.js",
   "scripts": {
