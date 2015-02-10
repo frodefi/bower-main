@@ -1,0 +1,29 @@
+{
+  "name": "gulp-bower-main",
+  "version": "0.1.0",
+  "description": "Get bower main files in both normal and in minimized formats (if available in package)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frodefi/gulp-bower-main.git"
+  },
+  "keywords": [
+    "gulp",
+    "gulpfriendly",
+    "bower",
+    "minified"
+  ],
+  "author": "Frode Fikke",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/frodefi/gulp-bower-main/issues"
+  },
+  "homepage": "https://github.com/frodefi/gulp-bower-main",
+  "dependencies": {
+    "bower-main-files": "0.0.4",
+    "fs": "0.0.2"
+  }
+}
