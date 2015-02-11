@@ -18,18 +18,18 @@ Require the module
 var bowerMain = require('bower-main');
 ```
 
-To get a none-minified list of a certain kind of assets, call method 'assets' with the desired file extension, like '.js', '.css' and so on.
+To get a non-minified list of a certain kind of assets, call method 'assets' with the desired file extension, like '.js', '.css' and so on.
 
 ```js
 bowerMain.assets('.js')
 ```
 
-To get a minified list of a certain kind of assets, call method 'assets' with the desired file extension (like above)
+To get a minified list of a certain kind of assets, call method 'assetsMinified' with the desired file extension (like above)
 and the minified file extension, like '.min.js', '.min.js.gzip', '.min.css' and so on.
 If no minified version is found, the original is kept.
 
 ```js
-bowerMain.assets('.js','.min.js')
+bowerMain.assetsMinified('.js','.min.js')
 ```
 
 ## Example with Gulp
@@ -45,7 +45,7 @@ gulp.task('vendorScriptsDevelopment', function() {
 });
 
 gulp.task('vendorScriptsProduction', function() {
-  return gulp.src(bowerMain.assets('.js','.min.js'))
+  return gulp.src(bowerMain.assetsMinified('.js','.min.js'))
     .pipe(concat('vendor-scripts.js'))
     .pipe(gulp.dest('dist'))
 });
