@@ -1,55 +1,69 @@
 bower-main
 ===============
 
-Intended to be used with Gulp. Get bower main files in both normal and minimized formats (if available in package).
+Intended to be used with Gulp. Get bower main files as normal files array and minimized files array.
+If no minified version is found for some files, these will be available as a 3rd array so you can minify them yourself.
 It uses [bower-main-files](https://www.npmjs.com/package/main-bower-files) and manipulates the result.
 
 ## Installation
 
 ```shell
-  npm install bower-main --save
+  npm install --save-dev bower-main
 ```
 
 ## Usage
 
-Require the module
+Require the module and get a set of files (example js-files):
 
 ```js
 var bowerMain = require('bower-main');
-```
-
-To get a non-minified list of a certain kind of assets, call method 'assets' with the desired file extension, like '.js', '.css' and so on.
-
-```js
-bowerMain.assets('.js')
-```
-
-To get a minified list of a certain kind of assets, call method 'assetsMinified' with the desired file extension (like above)
-and the minified file extension, like '.min.js', '.min.js.gzip', '.min.css' and so on.
-If no minified version is found, the original is kept.
-
-```js
-bowerMain.assetsMinified('.js','.min.js')
+var bowerMainJavaScriptFiles = bowerMain('js','min.js');
+var normalJavaScriptFiles = bowerMainJavaScriptFiles.normal;
+var minifiedJavaScriptFiles = bowerMainJavaScriptFiles.minified;
+var minifiedJavaScriptFilesNotFound = bowerMainJavaScriptFiles.minifiedNotFound;
 ```
 
 ## Example with Gulp
 
 ```js
 var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var merge2 = require('merge2');
 var bowerMain = require('bower-main');
 
+var bowerMainJavaScriptFiles = bowerMain('js','min.js');
+
 gulp.task('vendorScriptsDevelopment', function() {
-  return gulp.src(bowerMain.assets('.js'))
+  return gulp.src(bowerMainJavaScriptFiles.normal)
     .pipe(concat('vendor-scripts.js'))
     .pipe(gulp.dest('dev'))
 });
 
 gulp.task('vendorScriptsProduction', function() {
-  return gulp.src(bowerMain.assetsMinified('.js','.min.js'))
-    .pipe(concat('vendor-scripts.js'))
+  return merge2(
+    gulp.src(bowerMainJavaScriptFiles.minified),
+    gulp.src(bowerMainJavaScriptFiles.minifiedNotFound)
+      .pipe(concat('tmp.min.js'))
+      .pipe(uglify())
+  )
+    .pipe(concat('vendor-scripts.min.js'))
     .pipe(gulp.dest('dist'))
 });
 ```
+
+## API
+
+# (extension, [minifed extension])
+
+Return a list of files of bower assets
+
+# extension
+
+An extension like "js", "css", "scss" and so on.
+
+# minified extension
+
+A minified extension like "min.js", "min.css" and so on.
 
 ## LICENSE
 
