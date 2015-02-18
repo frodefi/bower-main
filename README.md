@@ -59,4 +59,4 @@ gulp.task('vendorScriptsProduction', function() {
 
 ## LICENSE
 
-MIT © Frode Fikke <frodefi@gmail.com>
+MIT © [Frode Fikke](https://github.com/frodefi)

@@ -1,6 +1,6 @@
 {
   "name": "bower-main",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Get bower main files in both normal and in minimized formats (if available in package)",
   "main": "index.js",
   "scripts": {
@@ -12,6 +12,7 @@
   },
   "keywords": [
     "gulp",
+    "gulpplugin",
     "gulpfriendly",
     "bower",
     "minified"
@@ -23,6 +24,6 @@
   },
   "homepage": "https://github.com/frodefi/bower-main",
   "dependencies": {
-    "bower-main-files": "0.0.4"
+    "main-bower-files": "2.5.0"
   }
 }
