@@ -1,9 +1,10 @@
 bower-main
 ===============
 
-Intended to be used with Gulp. Get bower main files as normal files array and minimized files array.
-If no minified version is found for some files, these will be available as a 3rd array so you can minify them yourself.
-It uses [bower-main-files](https://www.npmjs.com/package/main-bower-files) and manipulates the result.
+Made to be used with Gulp. Get bower main files as normal file names array and as minimized file names array.
+If no minified version is found for some files, these file names will be available as a 3rd array so you can minify them yourself.
+It uses [bower-main-files](https://www.npmjs.com/package/main-bower-files), manipulates the result and checks the
+availability of a minimized version.
 
 ## Installation
 
@@ -18,9 +19,10 @@ Require the module and get a set of files (example js-files):
 ```js
 var bowerMain = require('bower-main');
 var bowerMainJavaScriptFiles = bowerMain('js','min.js');
-var normalJavaScriptFiles = bowerMainJavaScriptFiles.normal;
-var minifiedJavaScriptFiles = bowerMainJavaScriptFiles.minified;
-var minifiedJavaScriptFilesNotFound = bowerMainJavaScriptFiles.minifiedNotFound;
+
+var normalJavaScriptFilesArray           = bowerMainJavaScriptFiles.normal;
+var minifiedJavaScriptFilesArray         = bowerMainJavaScriptFiles.minified;
+var minifiedJavaScriptFilesNotFoundArray = bowerMainJavaScriptFiles.minifiedNotFound;
 ```
 
 ## Example with Gulp
