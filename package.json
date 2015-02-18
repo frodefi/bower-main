@@ -1,6 +1,6 @@
 {
   "name": "bower-main",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Get bower main files in both normal and in minimized formats (if available in package)",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/frodefi/bower-main",
   "dependencies": {
-    "bower-main-files": "0.0.4",
-    "fs": "0.0.2"
+    "bower-main-files": "0.0.4"
   }
 }
