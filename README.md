@@ -51,20 +51,6 @@ gulp.task('vendorScriptsProduction', function() {
 });
 ```
 
-## API
-
-# (extension, [minifed extension])
-
-Return a list of files of bower assets
-
-# extension
-
-An extension like "js", "css", "scss" and so on.
-
-# minified extension
-
-A minified extension like "min.js", "min.css" and so on.
-
 ## LICENSE
 
 (MIT License)
