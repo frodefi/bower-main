@@ -14,8 +14,8 @@ availability of a minimized version (in the bower package).
 
 ## Usage
 
-Require the module and get a set of files, giving two paramenters: First paramenter is the non-mimified file extension,
-like 'js' or 'css'. Second parameter is the minified file extension, like 'min.js' or 'min.css'.
+Require the module and get a set of asset files by giving two paramenters: First paramenter is the non-mimified file extension,
+like 'js' or 'css'. Second parameter (optional) is the minified file extension, like 'min.js' or 'min.css'.
 Here is a usage with JavaScript files:
 
 ```js
