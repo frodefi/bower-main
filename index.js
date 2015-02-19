@@ -31,7 +31,6 @@ module.exports = function (extension, minifiedExtension) {
       }
       return orgFilename;
     });
-    console.log("tmp",tmpFiles);
     result.minified = tmpFiles.filter(function (filename) {
       return filename.match(matchMinifiedExtension)
     });

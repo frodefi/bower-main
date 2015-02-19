@@ -57,6 +57,10 @@ gulp.task('vendorScriptsProduction', function() {
 });
 ```
 
+## Feedback
+
+If you find a bug, have a feature request or similar, then create an issue on [https://github.com/frodefi/bower-main/issues](https://github.com/frodefi/bower-main/issues).
+
 ## LICENSE
 
 MIT © [Frode Fikke](https://github.com/frodefi)
