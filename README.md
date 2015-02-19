@@ -1,7 +1,7 @@
 bower-main
 ===============
 
-Made to be used with Gulp. Get bower main files as normal file names array and as minimized file names array.
+Made to be used with Gulp. Based on asset type, get bower main files as normal file names array and as minimized file names array.
 If no minified version is found for some files, these file names will be available as a 3rd array so you can minify them yourself.
 It uses [main-bower-files](https://www.npmjs.com/package/main-bower-files), manipulates the result and checks for the
 availability of a minimized version (in the bower package).
@@ -57,7 +57,7 @@ gulp.task('vendorScriptsProduction', function() {
 });
 ```
 
-## Feedback
+## Issues
 
 If you find a bug, have a feature request or similar, then create an issue on [https://github.com/frodefi/bower-main/issues](https://github.com/frodefi/bower-main/issues).
 

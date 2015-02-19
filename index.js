@@ -2,10 +2,9 @@ var mainBowerFiles = require('main-bower-files'),
   fs = require('fs');
 
 /**
- * Get an array the defined main bower files (therefore being non-minified), filtered for the desired type (extension)
- * Get an array of minified variants of the main bower files, if exist in the packages,
- * filtered for the desired type (extension) and type of minification.
- * If minified variant is not found, original will be kept.
+ * Based on asset type, get bower main files as normal file names array and as minimized file names array.
+ * If no minified version is found for some files, these file names will be available as a 3rd array,
+ * so you can minify them yourself.
  *
  * @param  {String} extension - The asset type you want, for example .js or .css
  * @param  {String} minifiedExtension - Optional: The minified asset type you want, for example .min.js, .min.js.gzip or .min.css
@@ -39,7 +38,7 @@ module.exports = function (extension, minifiedExtension) {
         return filename;
       }
     });
-  };
+  }
 
   return result;
 };
