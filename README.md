@@ -1,12 +1,9 @@
 bower-main
 ===============
 
-Made to be used with Gulp. Based on asset type, get bower main files as normal file names array and as minimized file names array.
-If no minified version is found for some files, these file names will be available as a 3rd array so you can minify them yourself.
-The order of the files is as set in bower.json.
+Made to be used with Gulp. Based on asset type, get bower main files as normal file names array and as minimized file names array. If no minified version is found for some files, these file names will be available as a 3rd array so you can minify them yourself. The order of the files is as set in **bower.json**.
 
-It uses [main-bower-files](https://www.npmjs.com/package/main-bower-files), manipulates the result and checks for the
-availability of a minimized version (in the bower package).
+It uses [main-bower-files](https://www.npmjs.com/package/main-bower-files), manipulates the result and checks for the availability of a minimized version (in the bower package).
 
 ## Installation
 
@@ -29,9 +26,9 @@ var minifiedJavaScriptFileNamesArray         = bowerMainJavaScriptFilesObject.mi
 var minifiedJavaScriptFileNamesNotFoundArray = bowerMainJavaScriptFilesObject.minifiedNotFound;
 ```
 
-## Example with Gulp
+## Minify non-minified scripts in Gulp
 
-Again, the example uses JavaScript files:
+Again, this example uses JavaScript files.
 
 ```js
 var concat = require('gulp-concat');
@@ -58,6 +55,60 @@ gulp.task('vendorScriptsProduction', function() {
     .pipe(gulp.dest('dist'))
 });
 ```
+
+## Copy your Bower dependencies with Gulp
+
+Assuming your Bower dependencies contain various extension files (css, js, fonts, eot, svg, etc.), it may seem heavy to select ALL the possible extensions. So, here is a sample that shows how to...
+
+* Copy the minified JS and CSS scripts when they exists.
+* Copy the full JS and CSS scripts when no minified version exist.
+* Copy all the other Bower dependencies (no matter their extension).
+
+```js
+// Include our plug-ins
+var bowerMain = require('bower-main');
+var mainBowerFiles = require('main-bower-files');
+var exists = require('path-exists').sync;
+var gulpIgnore = require('gulp-ignore');
+
+// Create some task
+gulp.task( 'copy-bower-dep', function() {
+
+	// Copy minified resources (Bower)
+	gulp.src( bowerMain( 'js', 'min.js' ).minified, {base: './my-bower-components/dir'})
+			.pipe( gulp.dest( './target/dist/lib' ));
+	
+	gulp.src( bowerMain( 'css', 'min.css' ).minified, {base: './my-bower-components/dir'})
+			.pipe( gulp.dest( './target/dist/lib' ));
+	
+	// Copy non-minified resources (Bower)
+	// Notice we filter these resources to distinguish which one are minified.
+	gulp.src( mainBowerFiles(), {base: './my-bower-components/dir'})
+			.pipe( gulpIgnore.include( keepNonMinified ))
+			.pipe( gulp.dest( './target/dist/lib' ));
+});
+
+/*
+ * A function that checks whether a Bower file has a minified version.
+ */
+function keepNonMinified( file ) {
+	
+	var keep = true;
+	if( file.path.match( '\.js$' )) {
+		var minPath = file.path.replace( '.js', '.min.js' );
+		keep = ! exists( minPath );
+		
+	} else if( file.path.match( '\.css$' )) {
+		var minPath = file.path.replace( '.css', '.min.css' );
+		keep = ! exists( minPath );
+	}
+	
+	// gutil.log( file.path + ' => ' + keep );
+	return keep;
+}
+```
+
+Based on [this gist](https://gist.github.com/vincent-zurczak/0ec946faa3dd409c6cfb).
 
 ## Issues
 
