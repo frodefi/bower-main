@@ -11,9 +11,9 @@ var mainBowerFiles = require('main-bower-files'),
  * @return {Object} - With the properties of type Array: 'normal', 'minified' and 'minifiedNotFound'. The last two properties is only present if function is called with both parameters.
  */
 module.exports = function (extension, minifiedExtension) {
-  var matchExtension = new RegExp('.+\.' + extension + '$'),
-    matchMinifiedExtension = new RegExp('.+\.' + minifiedExtension + '$'),
-    filenameWithoutExtension = new RegExp('^(.+)\.' + extension + '$'),
+  var matchExtension = new RegExp('.+\\.' + extension + '$'),
+    matchMinifiedExtension = new RegExp('.+\\.' + minifiedExtension + '$'),
+    filenameWithoutExtension = new RegExp('^(.+)\\.' + extension + '$'),
     result = {},
     tmpFiles;
 
