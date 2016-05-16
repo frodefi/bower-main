@@ -24,6 +24,6 @@
   },
   "homepage": "https://github.com/frodefi/bower-main",
   "dependencies": {
-    "main-bower-files": "2.5.0"
+    "main-bower-files": "2.7.1"
   }
 }
